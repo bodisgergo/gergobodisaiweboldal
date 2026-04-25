@@ -756,7 +756,7 @@
     footer { flex-direction: column; text-align: center; gap: 8px; padding: 40px 0 30px; }
   }
   @media (max-width: 480px) {
-    .hero-visual { display: none; }
+    .hero-visual { height: 280px; min-height: 280px; }
     .nav-cta svg { display: none; }
   }
 
@@ -918,7 +918,7 @@
     </div>
 
     <div class="hero-visual">
-      <canvas id="hero-canvas" style="opacity: 1; border-radius: 50px; border: 2px solid rgb(0, 255, 63)"></canvas>
+      <canvas id="hero-canvas"></canvas>
       <div class="float-card fc-1" data-parallax="20">
         <div class="label">ÉPÍTEK</div>
         <ul>
@@ -1557,6 +1557,9 @@ document.addEventListener('click', e => {
     });
   }
 
+  let heroScrollY = 0;
+  window.addEventListener('scroll', () => { heroScrollY = window.scrollY; }, { passive: true });
+
   let pulse = 0;
   const origPulse = window.__pulseScene;
   window.__pulseScene = (amt) => {
@@ -1573,8 +1576,8 @@ document.addEventListener('click', e => {
       mainObj.material.uniforms.uPulse.value = pulse;
       mainObj.material.uniforms.uMouse.value.lerp(mouseN, 0.1);
     }
-    group.rotation.y = t * 0.15 + mouseN.x * 0.3;
-    group.rotation.x = mouseN.y * 0.2;
+    group.rotation.y = t * 0.15 + mouseN.x * 0.3 + heroScrollY * 0.0018;
+    group.rotation.x = mouseN.y * 0.2 + heroScrollY * 0.0007;
     if (wireObj) {
       wireObj.rotation.y = -t * 0.1;
       wireObj.rotation.x = t * 0.05;
