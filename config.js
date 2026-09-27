@@ -11,7 +11,7 @@ window.LINKTREE_DATA = {
       "icon" : "tiktok",
       "id" : "tiktok",
       "title" : "TikTok",
-      "url" : "https://www.tiktok.com/@gergo.bodis?lang=en",
+      "url" : "https://www.tiktok.com/@gergo.bodis28",
       "visible" : true
     },
     {
